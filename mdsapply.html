@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MDS Application Form | Royal Dental College</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b3b45;--ink2:#35606a;--accent:#00c9a0;--bg:#f3fbf9;--bg2:#d9f3ee;--teal:#0f5260;--err:#c0392b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;color:var(--ink);background:var(--bg);min-height:100vh}
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:transparent;padding-top:env(safe-area-inset-top,0px);--flag:#0f5260;--flag2:#082a32;--flagEdge:var(--accent)}
+.bar-in{max-width:1320px;margin:auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{position:relative;z-index:1;width:150px;height:52px;flex:none;display:flex;align-items:center;justify-content:center}
+.logo img{display:block;width:84%;height:auto;aspect-ratio:2.9/1;object-fit:contain;overflow:hidden}
+.logo::before,.logo::after{content:"";position:absolute;pointer-events:none;transform:translateY(-110%);opacity:0;transition:transform .6s cubic-bezier(.22,1,.36,1),opacity .3s}
+.logo::before{z-index:-1;left:-20px;right:-20px;top:-70px;bottom:-74px;background:linear-gradient(180deg,var(--flag),var(--flag2));clip-path:polygon(0 0,100% 0,100% calc(100% - 36px),50% 100%,0 calc(100% - 36px))}
+.logo::after{z-index:-2;left:-23px;right:-23px;top:-70px;bottom:-78px;background:var(--flagEdge);clip-path:polygon(0 0,100% 0,100% calc(100% - 36px),50% 100%,0 calc(100% - 36px))}
+body.ready .logo::before,body.ready .logo::after{transform:none;transition-delay:.3s}
+body.ready .logo::before{opacity:1}
+body.ready .logo::after{opacity:.85}
+.bar.scrolled .back{background:#fff;box-shadow:0 8px 24px rgba(11,59,69,.16)}
+.bar.scrolled .back:hover{background:var(--teal)}
+.back{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;border:1.5px solid var(--teal);color:var(--teal);text-decoration:none;font:500 .92rem/1 Poppins,sans-serif;transition:background .3s,color .3s}
+.back svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.back:hover{background:var(--teal);color:#fff}
+.back:hover svg{transform:translateX(-4px)}
+.back:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+main{max-width:1240px;margin:0 auto;padding:150px 22px 90px}
+.hd{text-align:center;margin-bottom:34px}
+.hd h1{font:600 clamp(2.2rem,5vw,3.4rem)/1.05 'Cormorant Garamond',Georgia,serif;margin:0 0 12px}
+.hd p{margin:0;font:300 1rem/1.8 Poppins,sans-serif;color:var(--ink2)}
+form{background:#fff;border-radius:22px;padding:42px 40px;box-shadow:0 18px 44px rgba(11,59,69,.08)}
+fieldset{border:0;margin:0 0 30px;padding:0;min-width:0}
+legend{font:600 1.4rem/1.2 'Cormorant Garamond',Georgia,serif;color:var(--ink);padding:0 0 14px;margin:0 0 20px;width:100%;border-bottom:1px solid var(--bg2);position:relative}
+legend::after{content:"";position:absolute;left:0;bottom:-1px;width:60px;height:3px;background:var(--teal)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 22px}
+.f{display:flex;flex-direction:column;gap:7px;min-width:0}
+.f.full{grid-column:1/-1}
+label{font:500 .84rem/1.3 Poppins,sans-serif;color:var(--ink)}
+label i{color:var(--err);font-style:normal}
+input,select,textarea{width:100%;font:400 .95rem/1.4 Poppins,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--bg2);border-radius:12px;padding:14px 16px;transition:border-color .25s,background .25s,box-shadow .25s}
+textarea{resize:vertical;min-height:110px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(0,201,160,.15)}
+.f.bad input,.f.bad select,.f.bad textarea{border-color:var(--err);background:#fff7f6}
+.msg{display:none;font:400 .78rem/1.3 Poppins,sans-serif;color:var(--err)}
+.f.bad .msg{display:block}
+.chk{display:flex;gap:12px;align-items:flex-start;font:300 .88rem/1.6 Poppins,sans-serif;color:var(--ink2)}
+.chk input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--teal)}
+.sub{margin-top:8px;display:inline-flex;align-items:center;gap:12px;padding:18px 38px;border:0;border-radius:999px;background:var(--teal);color:#fff;cursor:pointer;font:600 1rem/1 Poppins,sans-serif;transition:background .3s,transform .3s,box-shadow .3s}
+.sub svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.sub:hover{background:#0b3f4b;transform:translateY(-2px);box-shadow:0 14px 30px rgba(11,59,69,.25)}
+.sub:hover svg{transform:translateX(4px)}
+.sub:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.ok{display:none;text-align:center;background:#fff;border-radius:22px;padding:60px 30px;box-shadow:0 18px 44px rgba(11,59,69,.08)}
+.ok.show{display:block}
+.ok .tick{width:72px;height:72px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;margin:0 auto 22px}
+.ok .tick svg{width:34px;height:34px;fill:none;stroke:#00846c;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ok h2{font:600 2.2rem/1.1 'Cormorant Garamond',Georgia,serif;margin:0 0 10px}
+.ok p{margin:0 0 26px;font:300 1rem/1.8 Poppins,sans-serif;color:var(--ink2)}
+.ok a{display:inline-block;padding:14px 30px;border-radius:999px;background:var(--teal);color:#fff;text-decoration:none;font:500 .95rem/1 Poppins,sans-serif}
+.fu{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.22,1,.36,1) var(--d,0s),transform .9s cubic-bezier(.22,1,.36,1) var(--d,0s)}
+.fu.in{opacity:1;transform:none}
+.sub.fu{transition:opacity .9s cubic-bezier(.22,1,.36,1) var(--d,0s),transform .9s cubic-bezier(.22,1,.36,1) var(--d,0s),background .3s,box-shadow .3s}
+.sub.fu.in:hover{transform:translateY(-2px);transition-delay:0s;transition-duration:.3s}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 36px}
+.rad{display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:12px 4px 0}
+.rad label{display:inline-flex;align-items:center;gap:8px;font:400 .92rem/1.3 Poppins,sans-serif;color:var(--ink);cursor:pointer}
+.rad input{width:18px;height:18px;padding:0;margin:0;flex:none;accent-color:var(--teal)}
+.lb{font:500 .84rem/1.3 Poppins,sans-serif;color:var(--ink)}.lb i{color:var(--err);font-style:normal}
+.tw{overflow-x:auto;border:1px solid var(--bg2);border-radius:14px;margin-bottom:26px}
+.tw table{width:100%;min-width:680px;border-collapse:collapse;background:#fff}
+.tw th,.tw td{padding:12px 14px;border-bottom:1px solid var(--bg2);border-right:1px solid var(--bg2);text-align:left;vertical-align:middle}
+.tw th:last-child,.tw td:last-child{border-right:0}.tw tr:last-child td{border-bottom:0}
+.tw thead th{background:var(--ink);color:#fff;font:600 .9rem/1.3 Poppins,sans-serif;border-color:rgba(255,255,255,.14)}
+.tw tbody th,.tw .k{font:400 .92rem/1.5 Poppins,sans-serif;color:var(--ink);background:var(--bg);width:24%}
+.tw .kb{font:600 .9rem/1.4 Poppins,sans-serif;color:var(--ink);background:var(--bg)}
+.tw .sec{background:var(--bg);font:600 .95rem/1.3 Poppins,sans-serif;color:var(--ink)}
+.tw input{padding:11px 14px}
+.sub.out{display:flex;margin:26px auto 0;padding:16px 52px;background:transparent;color:var(--ink);border:1.5px solid var(--ink);text-transform:uppercase;letter-spacing:.06em;font-size:.95rem}
+.sub.out:hover{background:var(--ink);color:#fff}
+.sub.out svg{display:none}
+.qn{margin:0 0 6px;font:400 .88rem/1.6 Poppins,sans-serif;color:var(--ink2)}
+.sh{font:600 1.15rem/1.3 'Cormorant Garamond',Georgia,serif;color:var(--ink);margin:6px 0 16px}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+@media (max-width:640px){.bar-in{padding:12px 16px}.logo{width:120px}.logo::before{left:-14px;right:-14px;top:-66px;bottom:-62px}.logo::after{left:-17px;right:-17px;top:-66px;bottom:-66px}.back{padding:10px 16px;font-size:.85rem}main{padding:120px 14px 70px}form{padding:30px 20px}.g{grid-template-columns:1fr}.sub{width:100%;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.logo::before,.logo::after{transition:none}*{transition:none!important;scroll-behavior:auto!important}.fu{opacity:1;transform:none}}
+
+/* mobile header (synced with index) */
+@media (max-width:640px){
+.bar-in{padding:0;min-height:62px;justify-content:flex-end;align-items:flex-start}
+.logo{position:absolute;top:0;left:18px;width:100px;height:104px;z-index:5}
+.logo img{width:86%;height:auto}
+.logo::before{left:-10px;right:-10px;top:0;bottom:-25px;clip-path:polygon(0 0,100% 0,100% calc(100% - 24px),50% 100%,0 calc(100% - 24px))}
+.logo::after{left:-13px;right:-13px;top:0;bottom:-30px;clip-path:polygon(0 0,100% 0,100% calc(100% - 26px),50% 100%,0 calc(100% - 26px))}
+.back{margin:10px 14px 0 0}
+main{padding-top:160px}
+}
+@media (max-width:380px){.logo{left:14px;width:94px}}
+</style>
+<noscript><style>.fu{opacity:1;transform:none}.logo::before,.logo::after{transform:none;opacity:1}</style></noscript>
+</head>
+<body>
+<header class="bar" id="bar"><div class="bar-in">
+<a class="logo" href="index.html" aria-label="Royal Dental College home"><img src="logo.webp" alt="Royal Dental College"></a>
+<a class="back" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>Back to Home</a>
+</div></header>
+
+<main>
+<div class="hd fu"><h1>MDS Application Form</h1><p>Admissions 2026-27 are open. Fill in the form below and our admissions team will get in touch with you.</p></div>
+
+<form id="apply" class="fu" style="--d:.12s" novalidate>
+<fieldset class="fu" style="--d:0.15s"><legend>Applicant Details</legend><div class="cols"><div class="g"><div class="f full"><label for="name">Name of the applicant <i>*</i></label><input id="name" name="name" type="text" required autocomplete="name"><span class="msg">Please fill in this field.</span></div><div class="f"><label for="dob">Date of Birth <i>*</i></label><input id="dob" name="dob" type="date" required autocomplete="bday"><span class="msg">Please fill in this field.</span></div><div class="f"><label for="age">Age</label><input id="age" name="age" type="number" min="1" max="99" inputmode="numeric"></div><div class="f"><label for="email">Email <i>*</i></label><input id="email" name="email" type="email" required autocomplete="email"><span class="msg">Please fill in this field.</span></div><div class="f"><label for="phone">Phone Number <i>*</i></label><input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel"><span class="msg">Please fill in this field.</span></div><div class="f"><span class="lb">Gender <i>*</i></span><div class="rad"><label><input type="radio" name="gender" value="Male" required> Male</label><label><input type="radio" name="gender" value="Female" required> Female</label></div><span class="msg">Please select an option.</span></div><div class="f"><span class="lb">Nationality/Status <i>*</i></span><div class="rad"><label><input type="radio" name="nationality" value="Indian" required checked> Indian</label><label><input type="radio" name="nationality" value="NRI" required> NRI</label><label><input type="radio" name="nationality" value="Foreign" required> Foreign</label></div><span class="msg">Please select an option.</span></div><div class="f full"><label for="commaddr">Communication Address with PIN Code <i>*</i></label><textarea id="commaddr" name="communication_address" required></textarea><span class="msg">Please enter the address with PIN code.</span></div></div><div class="g"><div class="f full"><label for="caste">Caste and Religion</label><input id="caste" name="caste_religion" type="text"></div><div class="f"><label for="father">Father's Name <i>*</i></label><input id="father" name="father_name" type="text" required><span class="msg">Please fill in this field.</span></div><div class="f"><label for="mother">Mother's Name <i>*</i></label><input id="mother" name="mother_name" type="text" required><span class="msg">Please fill in this field.</span></div><div class="f full"><label for="guardian">Name of Guardian with relationship</label><input id="guardian" name="guardian" type="text"></div><div class="f full"><label for="localg">Local guardian's name</label><input id="localg" name="local_guardian" type="text"></div><div class="f full"><label for="permaddr">Permanent Address with PIN Code <i>*</i></label><textarea id="permaddr" name="permanent_address" required></textarea><span class="msg">Please enter the address with PIN code.</span></div><div class="f"><label for="landline">Landline no. with STD code</label><input id="landline" name="landline" type="tel"></div><div class="f"><label for="hostel">Whether hostel facility required</label><select id="hostel" name="hostel"><option value="">Select</option><option>Yes</option><option>No</option></select></div></div></div></fieldset>
+
+<fieldset class="fu" style="--d:0.15s"><legend>Qualifying Examination Marks</legend><div class="tw"><table><thead><tr><th>Subject</th><th>Marks Scored</th><th>Max. Marks</th><th>% of Marks</th></tr></thead><tbody><tr><th scope="row">Part I English</th><td><input name="m_english_scored" type="text" inputmode="decimal" aria-label="m english scored"></td><td><input name="m_english_max" type="text" inputmode="decimal" aria-label="m english max"></td><td><input name="m_english_pct" type="text" inputmode="decimal" aria-label="m english pct"></td></tr><tr><th scope="row">Part II Additional Language/Subject</th><td><input name="m_addl_scored" type="text" inputmode="decimal" aria-label="m addl scored"></td><td><input name="m_addl_max" type="text" inputmode="decimal" aria-label="m addl max"></td><td><input name="m_addl_pct" type="text" inputmode="decimal" aria-label="m addl pct"></td></tr><tr><th scope="row">Physics</th><td><input name="m_physics_scored" type="text" inputmode="decimal" aria-label="m physics scored"></td><td><input name="m_physics_max" type="text" inputmode="decimal" aria-label="m physics max"></td><td><input name="m_physics_pct" type="text" inputmode="decimal" aria-label="m physics pct"></td></tr><tr><th scope="row">Chemistry</th><td><input name="m_chemistry_scored" type="text" inputmode="decimal" aria-label="m chemistry scored"></td><td><input name="m_chemistry_max" type="text" inputmode="decimal" aria-label="m chemistry max"></td><td><input name="m_chemistry_pct" type="text" inputmode="decimal" aria-label="m chemistry pct"></td></tr><tr><th scope="row">Biology</th><td><input name="m_biology_scored" type="text" inputmode="decimal" aria-label="m biology scored"></td><td><input name="m_biology_max" type="text" inputmode="decimal" aria-label="m biology max"></td><td><input name="m_biology_pct" type="text" inputmode="decimal" aria-label="m biology pct"></td></tr><tr><th scope="row">Total Marks for Optional Subjects</th><td><input name="m_optional_total_scored" type="text" inputmode="decimal" aria-label="m optional total scored"></td><td><input name="m_optional_total_max" type="text" inputmode="decimal" aria-label="m optional total max"></td><td><input name="m_optional_total_pct" type="text" inputmode="decimal" aria-label="m optional total pct"></td></tr></tbody></table></div></fieldset>
+
+<fieldset class="fu" style="--d:0.15s"><legend>National Eligibility Cum Entrance Test NEET(UG)-2026 Results</legend><div class="tw"><table><tbody><tr><th scope="row">Name of the Student</th><td><input name="neet_student_name" type="text" aria-label="Name of the Student"></td></tr><tr><th scope="row">Roll Number</th><td><input name="neet_roll" type="text" aria-label="Roll Number"></td></tr><tr><th scope="row">Application Number</th><td><input name="neet_app_no" type="text" aria-label="Application Number"></td></tr></tbody></table></div><div class="tw"><table><tbody><tr><td class="sec" colspan="6">Marks Obtained:</td></tr><tr><td class="kb">Physics (Out of 180)</td><td><input name="neet_physics" type="text" inputmode="decimal" aria-label="neet physics"></td><td class="kb">Chemistry (Out of 180)</td><td><input name="neet_chemistry" type="text" inputmode="decimal" aria-label="neet chemistry"></td><td class="kb">Biology (Botany &amp; Zoology) (Out of 180)</td><td><input name="neet_biology" type="text" inputmode="decimal" aria-label="neet biology"></td></tr><tr><td class="kb">Total Marks (Out of 720)</td><td><input name="neet_total" type="text" inputmode="decimal" aria-label="neet total"></td><td class="kb">Percentile Score</td><td><input name="neet_percentile" type="text" inputmode="decimal" aria-label="neet percentile"></td><td></td><td></td></tr></tbody></table></div><div class="tw"><table><thead><tr><th>Details</th><th>Overall Rank</th><th>Category Rank</th><th>Category-PH Rank</th></tr></thead><tbody><tr><td class="kb">NEET All India Rank</td><td><input name="rank_neet_overall" type="text" inputmode="decimal" aria-label="rank neet overall"></td><td><input name="rank_neet_category" type="text" inputmode="decimal" aria-label="rank neet category"></td><td><input name="rank_neet_ph" type="text" inputmode="decimal" aria-label="rank neet ph"></td></tr><tr><td class="kb">All India Quota Rank (for 15% Seats)</td><td><input name="rank_aiq_overall" type="text" inputmode="decimal" aria-label="rank aiq overall"></td><td><input name="rank_aiq_category" type="text" inputmode="decimal" aria-label="rank aiq category"></td><td><input name="rank_aiq_ph" type="text" inputmode="decimal" aria-label="rank aiq ph"></td></tr></tbody></table></div>
+<p class="qn">*As per the option indicated by the candidate in the online Application Form</p>
+<p class="qn">RESULT : Qualified in NEET-2026</p>
+<div class="rad"><label><input type="radio" name="neet_qualified" value="Yes" checked> Yes</label><label><input type="radio" name="neet_qualified" value="No"> No</label></div>
+</fieldset>
+
+<button class="sub out fu" style="--d:.1s" type="submit">Submit<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+</form>
+
+<div class="ok fu" id="ok" role="status" tabindex="-1">
+<div class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+<h2>Thank you for applying</h2>
+<p>We have received your application. Our admissions team will contact you shortly.</p>
+<a href="index.html">Back to Home</a>
+</div>
+</main>
+
+<script>
+(function(){var b=document.getElementById("bar"),f=function(){b.classList.toggle("scrolled",window.scrollY>10)};f();addEventListener("scroll",f,{passive:true})})();
+(function(){var r=function(){document.body.classList.add("ready")};if(document.readyState==="complete")r();else addEventListener("load",r);setTimeout(r,1200)})();
+(function(){var els=[].slice.call(document.querySelectorAll('.fu'));
+if(!('IntersectionObserver' in window)){els.forEach(function(x){x.classList.add('in')});return}
+var o=new IntersectionObserver(function(a){a.forEach(function(i){if(i.isIntersecting){i.target.classList.add('in');o.unobserve(i.target)}})},{threshold:.08,rootMargin:'0px 0px -4% 0px'});
+els.forEach(function(x){o.observe(x)});
+document.getElementById('ok').addEventListener('transitionend',function(){});})();
+(function(){var d=document.getElementById('dob'),a=document.getElementById('age');if(!d||!a)return;d.addEventListener('change',function(){if(!d.value)return;var b=new Date(d.value),t=new Date(),n=t.getFullYear()-b.getFullYear(),m=t.getMonth()-b.getMonth();if(m<0||(m===0&&t.getDate()<b.getDate()))n--;if(n>=0&&n<120)a.value=n})})();
+(function(){
+var form=document.getElementById('apply'),ok=document.getElementById('ok');
+function check(el){
+ var f=el.closest('.f'),v=el.type==='radio'?!!form.querySelector('input[name="'+el.name+'"]:checked'):el.type==='checkbox'?el.checked:el.value.trim(),good=!!v;
+ if(good&&el.type==='email')good=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+ if(good&&el.type==='tel')good=/^[+()\-\s\d]{7,18}$/.test(v);
+ if(f)f.classList.toggle('bad',!good);
+ return good;
+}
+var fields=[].slice.call(form.querySelectorAll('[required]'));
+fields.forEach(function(el){el.addEventListener('blur',function(){check(el)});el.addEventListener('input',function(){if(el.closest('.f').classList.contains('bad'))check(el)});el.addEventListener('change',function(){if(el.closest('.f').classList.contains('bad'))check(el)})});
+form.addEventListener('submit',function(e){
+ e.preventDefault();
+ var first=null;
+ fields.forEach(function(el){if(!check(el)&&!first)first=el});
+ if(first){first.focus();return}
+ /* TODO: send the form data to your backend here (e.g. fetch('apply.php',{method:'POST',body:new FormData(form)})) */
+ form.style.display='none';ok.classList.add('show','in');ok.focus();window.scrollTo({top:0,behavior:'smooth'});
+});
+})();
+</script>
+</body>
+</html>
